@@ -2,11 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&display=swap');
 
 body{
+    position: relative;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     user-select: none;
-    background-image: url('imgs/camp-bg.jpg');
+    background-image: url('images/camp-bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+    margin: 0;
 }
 
 #camp-activities-inquiry{ text-align: center; }
@@ -24,6 +29,7 @@ body{
     justify-content: center;
     row-gap: 2rem;
     font-size: 2em;
+    padding-bottom: 5rem;
 }
 
 #camp-activities-inquiry form label{
@@ -36,6 +42,7 @@ body{
 }
 
 textarea{
+    max-width: 1200px;
     width: 60%;
     border-radius: 1rem;
     font-family: "Edu NSW ACT Foundation", cursive;
@@ -46,20 +53,9 @@ textarea{
     box-sizing: border-box;
     padding: 1rem;
     font-size: 0.75em;
-}
-
-#activity-select{
-    position: relative;
-    appearance: none;
-    font-family: "Edu NSW ACT Foundation", cursive;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 1.25em;
-    border-radius: 9999px;
-    padding: 1rem;
-    padding-right: 5rem;
-    background: none;
+    color: white;
+    background: transparent;
+    border-color: white;
 }
 
 #camp-activities-inquiry form button{
@@ -68,21 +64,177 @@ textarea{
     border: none;
     cursor: pointer;
     font-size: 1.5em;
+    color: white;
+}
+
+#camp-activities-inquiry form label[for="activity-select"]{
+    font-weight: 600;
+    margin: -0.5rem 0;
+    font-size: 1.2em;
 }
 
 .custom-select{
     position: relative;
+    font-family: "Edu NSW ACT Foundation", cursive;
 }
 
 .arrow-area{
     position: absolute;
-    height: 100%;
+    height: 82.4px;
     top: 0;
     right: 0;
     z-index: 1;
     pointer-events: none;
+    background: linear-gradient(to bottom, rgba(55, 0, 75, 0.5) 50%, rgba(75, 0, 75, 0.5));
+    border-radius: 0 9999px 9999px 0;
 }
 
 .arrow-area img{
     height: 100%;
+    transition: rotate 0.2s ease-in-out;
+}
+
+.custom-select select {
+    display: none;
+}
+
+.select-selected {
+    width: 27rem;
+    position: relative;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.25em;
+    border-radius: 9999px;
+    padding: 1rem;
+    padding-right: 5rem;
+    background-color: #eeeeee22;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.select-selected.select-arrow-active{
+    border-radius: 9999px 9999px 9999px 0;
+}
+
+.select-items div {
+    color: black;
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.25em;
+}
+
+.select-items {
+    display: block;
+    background-color: #ffffffdd;
+    width: 446.6px;
+    border-radius: 0 0 40px 40px;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.select-items div:last-child, .same-as-selected:last-child{
+    border-radius: 0 0 40px 40px;
+}
+
+.selected-hover-effect{
+    z-index: 0;
+    width: 0;
+    height: 82.4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 0.4s 0.15s ease-in, opacity 0.4s 0.15s ease-in;
+    background: linear-gradient(to bottom, rgba(55, 0, 75, 0.35), rgba(75, 0, 55, 0.35));
+    opacity: 0;
+}
+
+#current-selected{
+    position: relative;
+    z-index: 1;
+}
+
+.cloud{
+    position: absolute;
+    filter: brightness(0.7);
+    z-index: -1;
+    opacity: 0.5;
+    left: -50vw;
+    animation: cloud-moving linear infinite alternate;
+}
+
+.bush-btn-bg{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30rem;
+    z-index: -1;
+    filter: hue-rotate(110deg) brightness(0.7);
+}
+
+@keyframes cloud-moving{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(200vw);
+    }
+}
+
+@media (max-width: 1024px) {
+    #camp-activities-inquiry h1{
+        font-size: 3em;
+        margin-block-start: 0.5em;
+        margin-block-end: 0.5em;
+    }
+    .select-selected, .select-hover-effect, .select-items div{ font-size: 1em; }
+    .select-selected{ width: 20rem; }
+    .arrow-area, .select-hover-effect{
+        height: 72.4px;
+    }
+    .select-items{ width: 344.6px; }
+    #camp-activities-inquiry form label[for="activity-select"]{
+        font-size: 0.9em;
+        margin: 0;
+    }
+    #camp-activities-inquiry form{ row-gap: 1rem; }
+    #camp-activities-inquiry form label{ font-size: 0.75em; }
+}
+
+@media (max-width: 768px){
+    textarea{ width: 80%; }
+}
+
+@media (max-width: 640px) {
+    #camp-activities-inquiry h1{
+        font-size: 2em;
+    }
+    .select-selected, .select-hover-effect, .select-items div{ font-size: 0.6em; }
+    .select-selected{
+        width: 15rem;
+        padding: 0.5rem;
+        padding-right: 2.5rem;
+    }
+    .arrow-area, .select-hover-effect{
+        height: 40px;
+    }
+    .select-items{ width: 248px; }
+    .select-items div{ padding: 0.5rem; }
+    #camp-activities-inquiry form label[for="activity-select"]{
+        font-size: 0.75em;
+        width: 80%;
+        line-height: 1; 
+    }
+    #camp-activities-inquiry form label{ font-size: 0.5em; }
+}
+
+@media (max-width: 400px) {
+    #camp-activities-inquiry h1{
+        line-height: 1;
+    }
 }
