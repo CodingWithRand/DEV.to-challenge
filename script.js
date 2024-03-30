@@ -62,6 +62,8 @@ function createCustomSelect() {
                     if (s.options[i].innerHTML == this.innerHTML) {
                         s.selectedIndex = i;
                         h.querySelector("#current-selected").innerHTML = this.innerHTML;
+                        document.querySelector(".selected-activity-img").src = `images/${this.innerHTML === "--Please choose an option--" ? "camping" : this.innerHTML.toLowerCase()}.png`;
+                        console.log(this.innerHTML);
                         y = this.parentNode.getElementsByClassName("same-as-selected");
                         yl = y.length;
                         for (k = 0; k < yl; k++) {
@@ -140,8 +142,13 @@ function createCustomSelect() {
     document.addEventListener("click", closeAllSelect);
 }
 
-createDOMElements("div", ["customSelect"], divStorage);
-createDOMElements("img", ["h1Cloud1", "h1Cloud2", "h1Cloud3", "h1Cloud4", "h1Cloud5", "h1Cloud6", "h1Cloud7", "h1Cloud8", "h1Cloud9", "h1Cloud10", "bush"], imgStorage);
+createDOMElements("div", ["customSelect", "activitySelectionSection", "selectedActivity", "foodAllergiesSection", "additionSection"], divStorage);
+createDOMElements("img", ["h1Cloud1", "h1Cloud2", "h1Cloud3", "h1Cloud4", "h1Cloud5", "h1Cloud6", "h1Cloud7", "h1Cloud8", "h1Cloud9", "h1Cloud10", "bush", "selectedActivityImg"], imgStorage);
+
+divStorage.activitySelectionSection.classList.add("activity-selection-section");
+divStorage.selectedActivity.classList.add("selected-activity");
+divStorage.foodAllergiesSection.classList.add("food-allergies-section");
+divStorage.additionSection.classList.add("addition-section");
 
 divStorage.customSelect.classList.add("custom-select");
 
@@ -221,11 +228,29 @@ imgStorage.h1Cloud10.style.animationDuration = "50s";
 imgStorage.bush.src = "images/bush.png";
 imgStorage.bush.classList.add("bush-btn-bg")
 
+imgStorage.selectedActivityImg.src = "images/camping.png";
+imgStorage.selectedActivityImg.classList.add("selected-activity-img");
+
 window.onload = function () {
     const activitySelect = document.getElementById("activity-select");
+    const activitySelectLabel = document.querySelector("label[for='activity-select']");
+    const foodAllergies = document.getElementById("food-allergies");
+    const foodAllergiesLabel = document.querySelector("label[for='food-allergies']");
+    const additionalInfo = document.getElementById("additional-info");
+    const additionalInfoLabel = document.querySelector("label[for='additional-info']");
     const form = document.querySelector("#camp-activities-inquiry form");
     divStorage.customSelect.appendChild(activitySelect);
-    form.insertBefore(divStorage.customSelect, form.firstChild);
+    divStorage.activitySelectionSection.appendChild(activitySelectLabel);
+    divStorage.activitySelectionSection.appendChild(divStorage.customSelect);
+    divStorage.selectedActivity.appendChild(imgStorage.selectedActivityImg);
+    divStorage.foodAllergiesSection.appendChild(foodAllergiesLabel);
+    divStorage.foodAllergiesSection.appendChild(foodAllergies);
+    divStorage.additionSection.appendChild(additionalInfoLabel);
+    divStorage.additionSection.appendChild(additionalInfo);
+    form.insertBefore(divStorage.additionSection, form.firstElementChild);
+    form.insertBefore(divStorage.foodAllergiesSection, form.firstElementChild);
+    form.insertBefore(divStorage.selectedActivity, form.firstElementChild);
+    form.insertBefore(divStorage.activitySelectionSection, form.firstElementChild);
     form.parentNode.insertBefore(imgStorage.h1Cloud1, form.parentNode.firstChild);
     form.parentNode.insertBefore(imgStorage.h1Cloud2, form.parentNode.firstChild);
     form.parentNode.insertBefore(imgStorage.h1Cloud3, form.parentNode.firstChild);

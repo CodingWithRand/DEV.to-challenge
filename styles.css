@@ -23,13 +23,25 @@ body{
 }
 
 #camp-activities-inquiry form{
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50vh 50vh;
     align-items: center;
     justify-content: center;
     row-gap: 2rem;
     font-size: 2em;
     padding-bottom: 5rem;
+}
+
+#camp-activities-inquiry form > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    row-gap: 1rem;
 }
 
 #camp-activities-inquiry form label{
@@ -42,8 +54,9 @@ body{
 }
 
 textarea{
-    max-width: 1200px;
-    width: 60%;
+    max-width: 800px;
+    width: 80%;
+    height: 80%;
     border-radius: 1rem;
     font-family: "Edu NSW ACT Foundation", cursive;
     font-optical-sizing: auto;
@@ -65,11 +78,13 @@ textarea{
     cursor: pointer;
     font-size: 1.5em;
     color: white;
+    grid-column: 1 / span 2;
 }
 
 #camp-activities-inquiry form label[for="activity-select"]{
+    width: 80%;
     font-weight: 600;
-    margin: -0.5rem 0;
+    margin-top: 0.5rem;
     font-size: 1.2em;
 }
 
@@ -129,9 +144,11 @@ textarea{
 
 .select-items {
     display: block;
-    background-color: #ffffffdd;
+    background-color: #fff;
     width: 446.6px;
     border-radius: 0 0 40px 40px;
+    position: absolute;
+    z-index: 10;
 }
 
 .select-items div:hover, .same-as-selected {
@@ -177,6 +194,16 @@ textarea{
     filter: hue-rotate(110deg) brightness(0.7);
 }
 
+.activity-selection-section{
+    justify-content: flex-start !important;
+}
+
+.selected-activity-img{
+    height: 80%;
+    width: auto;
+    border-radius: 5rem;
+}
+
 @keyframes cloud-moving{
     0%{
         transform: translateX(0);
@@ -187,6 +214,15 @@ textarea{
 }
 
 @media (max-width: 1024px) {
+    #camp-activities-inquiry form{
+        display: flex;
+        flex-direction: column;
+    }
+    .selected-activity-img{
+        width: 50%;
+        height: auto;
+    }
+    textarea{ width: 60%; }
     #camp-activities-inquiry h1{
         font-size: 3em;
         margin-block-start: 0.5em;
