@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&display=swap');
 
-html{ overflow-x: hidden; }
+html, body, #camp-activities-inquiry{ overflow-x: hidden; }
 
 body{
     position: relative;
