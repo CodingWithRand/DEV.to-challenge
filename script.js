@@ -62,8 +62,8 @@ function createCustomSelect() {
                     if (s.options[i].innerHTML == this.innerHTML) {
                         s.selectedIndex = i;
                         h.querySelector("#current-selected").innerHTML = this.innerHTML;
-                        document.querySelector(".selected-activity-img").src = `images/${this.innerHTML === "--Please choose an option--" ? "camping" : this.innerHTML.toLowerCase()}.png`;
-                        console.log(this.innerHTML);
+                        document.querySelector(".selected-activity-img").style.transform = `rotateY(${i * 180}deg)`;
+                        setTimeout(() => document.querySelector(".selected-activity-img").src = `images/${this.innerHTML === "--Please choose an option--" ? "camping" : this.innerHTML.toLowerCase()}.png`, 200);
                         y = this.parentNode.getElementsByClassName("same-as-selected");
                         yl = y.length;
                         for (k = 0; k < yl; k++) {
@@ -142,13 +142,14 @@ function createCustomSelect() {
     document.addEventListener("click", closeAllSelect);
 }
 
-createDOMElements("div", ["customSelect", "activitySelectionSection", "selectedActivity", "foodAllergiesSection", "additionSection"], divStorage);
-createDOMElements("img", ["h1Cloud1", "h1Cloud2", "h1Cloud3", "h1Cloud4", "h1Cloud5", "h1Cloud6", "h1Cloud7", "h1Cloud8", "h1Cloud9", "h1Cloud10", "bush", "selectedActivityImg"], imgStorage);
+createDOMElements("div", ["customSelect", "activitySelectionSection", "selectedActivity", "foodAllergiesSection", "additionSection", "submitBtnCover", "leafEffectScreen"], divStorage);
+createDOMElements("img", ["h1Cloud1", "h1Cloud2", "h1Cloud3", "h1Cloud4", "h1Cloud5", "h1Cloud6", "h1Cloud7", "h1Cloud8", "h1Cloud9", "h1Cloud10", "bush1", "bush2", "selectedActivityImg", "leaf1", "leaf2"], imgStorage);
 
 divStorage.activitySelectionSection.classList.add("activity-selection-section");
 divStorage.selectedActivity.classList.add("selected-activity");
 divStorage.foodAllergiesSection.classList.add("food-allergies-section");
 divStorage.additionSection.classList.add("addition-section");
+divStorage.leafEffectScreen.classList.add("effect-area");
 
 divStorage.customSelect.classList.add("custom-select");
 
@@ -157,7 +158,7 @@ imgStorage.h1Cloud1.classList.add("cloud");
 imgStorage.h1Cloud1.style.width = "15vw";
 imgStorage.h1Cloud1.style.top = "7vh";
 imgStorage.h1Cloud1.style.animationDelay = "0s";
-imgStorage.h1Cloud1.style.animationDuration = "30s";
+imgStorage.h1Cloud1.style.animationDuration = "60s";
 
 imgStorage.h1Cloud2.src = "images/cloud.png";
 imgStorage.h1Cloud2.classList.add("cloud");
@@ -165,28 +166,28 @@ imgStorage.h1Cloud2.style.width = "30vw";
 imgStorage.h1Cloud2.style.height = "15vw";
 imgStorage.h1Cloud2.style.top = "-3vh";
 imgStorage.h1Cloud2.style.animationDelay = "0s";
-imgStorage.h1Cloud2.style.animationDuration = "45s";
+imgStorage.h1Cloud2.style.animationDuration = "75s";
 
 imgStorage.h1Cloud3.src = "images/cloud.png";
 imgStorage.h1Cloud3.classList.add("cloud");
 imgStorage.h1Cloud3.style.width = "18vw";
 imgStorage.h1Cloud3.style.top = "4vh";
 imgStorage.h1Cloud3.style.animationDelay = "3s";
-imgStorage.h1Cloud3.style.animationDuration = "35s";
+imgStorage.h1Cloud3.style.animationDuration = "65s";
 
 imgStorage.h1Cloud4.src = "images/cloud.png";
 imgStorage.h1Cloud4.classList.add("cloud");
 imgStorage.h1Cloud4.style.width = "10vw";
 imgStorage.h1Cloud4.style.top = "1.5vh";
 imgStorage.h1Cloud4.style.animationDelay = "5s";
-imgStorage.h1Cloud4.style.animationDuration = "39s";
+imgStorage.h1Cloud4.style.animationDuration = "69s";
 
 imgStorage.h1Cloud5.src = "images/cloud.png";
 imgStorage.h1Cloud5.classList.add("cloud");
 imgStorage.h1Cloud5.style.width = "15vw";
 imgStorage.h1Cloud5.style.top = "5vh";
 imgStorage.h1Cloud5.style.animationDelay = "10s";
-imgStorage.h1Cloud5.style.animationDuration = "33s";
+imgStorage.h1Cloud5.style.animationDuration = "63s";
 
 imgStorage.h1Cloud6.src = "images/cloud.png";
 imgStorage.h1Cloud6.classList.add("cloud");
@@ -194,28 +195,28 @@ imgStorage.h1Cloud6.style.width = "25vw";
 imgStorage.h1Cloud6.style.height = "10vw";
 imgStorage.h1Cloud6.style.top = "-2vh";
 imgStorage.h1Cloud6.style.animationDelay = "10s";
-imgStorage.h1Cloud6.style.animationDuration = "42s";
+imgStorage.h1Cloud6.style.animationDuration = "72s";
 
 imgStorage.h1Cloud7.src = "images/cloud.png";
 imgStorage.h1Cloud7.classList.add("cloud");
 imgStorage.h1Cloud7.style.width = "18vw";
 imgStorage.h1Cloud7.style.top = "4vh";
 imgStorage.h1Cloud7.style.animationDelay = "13s";
-imgStorage.h1Cloud7.style.animationDuration = "35s";
+imgStorage.h1Cloud7.style.animationDuration = "65s";
 
 imgStorage.h1Cloud8.src = "images/cloud.png";
 imgStorage.h1Cloud8.classList.add("cloud");
 imgStorage.h1Cloud8.style.width = "12vw";
 imgStorage.h1Cloud8.style.top = "2vh";
 imgStorage.h1Cloud8.style.animationDelay = "15ss";
-imgStorage.h1Cloud8.style.animationDuration = "37s";
+imgStorage.h1Cloud8.style.animationDuration = "67s";
 
 imgStorage.h1Cloud9.src = "images/cloud.png";
 imgStorage.h1Cloud9.classList.add("cloud");
 imgStorage.h1Cloud9.style.width = "8vw";
 imgStorage.h1Cloud9.style.top = "4vh";
 imgStorage.h1Cloud9.style.animationDelay = "18s";
-imgStorage.h1Cloud9.style.animationDuration = "35s";
+imgStorage.h1Cloud9.style.animationDuration = "65s";
 
 imgStorage.h1Cloud10.src = "images/cloud.png";
 imgStorage.h1Cloud10.classList.add("cloud");
@@ -223,10 +224,53 @@ imgStorage.h1Cloud10.style.width = "40vw";
 imgStorage.h1Cloud10.style.height = "20vw";
 imgStorage.h1Cloud10.style.top = "-10vh";
 imgStorage.h1Cloud10.style.animationDelay = "22s";
-imgStorage.h1Cloud10.style.animationDuration = "50s";
+imgStorage.h1Cloud10.style.animationDuration = "80s";
 
-imgStorage.bush.src = "images/bush.png";
-imgStorage.bush.classList.add("bush-btn-bg")
+imgStorage.bush1.src = "images/bush.png";
+imgStorage.bush1.classList.add("bush")
+imgStorage.bush1.style.left = 0;
+imgStorage.bush2.src = "images/bush.png";
+imgStorage.bush2.classList.add("bush")
+imgStorage.bush2.style.right = 0;
+imgStorage.bush2.style.transform = "scaleX(-1)"
+
+for(const [i, leaf] of [imgStorage.leaf1, imgStorage.leaf2].entries()){
+    leaf.src = "images/leaf.png";
+    leaf.classList.add("leaf");
+    leaf.style.animationName = "leaf-away-" + (i + 1);
+    leaf.style.animationDelay = `${i * 0.15}s`;
+    leaf.cloneNode(true);
+};
+
+function showLeaves (e) {
+    imgStorage.leaf1.style.left = e.clientX + "px";
+    imgStorage.leaf1.style.top = e.clientY + "px";
+    imgStorage.leaf2.style.left = e.clientX + "px";
+    imgStorage.leaf2.style.top = (e.clientY - 10) + "px";
+    divStorage.leafEffectScreen.appendChild(imgStorage.leaf1);
+    divStorage.leafEffectScreen.appendChild(imgStorage.leaf2);
+}
+
+async function jobDelay(callback, ms, variable){
+    await new Promise(resolve => setTimeout(() => {
+        callback(variable);
+        resolve();
+    }), ms)
+}
+
+const sheddingBush = (e) => jobDelay(showLeaves, 1000, e);
+let cuo = [true, true]
+const touchingBush = (e, i) => {
+    if(cuo[i]) e.target.style.width = "15rem";
+    else e.target.style.width = "30rem";
+    cuo[i] = !cuo[i];
+    showLeaves(e); 
+}
+
+imgStorage.bush1.onmousemove = sheddingBush;
+imgStorage.bush2.onmousemove = sheddingBush;
+imgStorage.bush1.onclick = (e) => touchingBush(e, 0);
+imgStorage.bush2.onclick = (e) => touchingBush(e, 1);
 
 imgStorage.selectedActivityImg.src = "images/camping.png";
 imgStorage.selectedActivityImg.classList.add("selected-activity-img");
@@ -238,6 +282,7 @@ window.onload = function () {
     const foodAllergiesLabel = document.querySelector("label[for='food-allergies']");
     const additionalInfo = document.getElementById("additional-info");
     const additionalInfoLabel = document.querySelector("label[for='additional-info']");
+    const submitBtn = document.querySelector("button[type='submit']");
     const form = document.querySelector("#camp-activities-inquiry form");
     divStorage.customSelect.appendChild(activitySelect);
     divStorage.activitySelectionSection.appendChild(activitySelectLabel);
@@ -247,10 +292,13 @@ window.onload = function () {
     divStorage.foodAllergiesSection.appendChild(foodAllergies);
     divStorage.additionSection.appendChild(additionalInfoLabel);
     divStorage.additionSection.appendChild(additionalInfo);
+    divStorage.submitBtnCover.appendChild(submitBtn);
+    divStorage.submitBtnCover.style.gridColumn = "1 / span 2"
     form.insertBefore(divStorage.additionSection, form.firstElementChild);
     form.insertBefore(divStorage.foodAllergiesSection, form.firstElementChild);
     form.insertBefore(divStorage.selectedActivity, form.firstElementChild);
     form.insertBefore(divStorage.activitySelectionSection, form.firstElementChild);
+    form.appendChild(divStorage.submitBtnCover);
     form.parentNode.insertBefore(imgStorage.h1Cloud1, form.parentNode.firstChild);
     form.parentNode.insertBefore(imgStorage.h1Cloud2, form.parentNode.firstChild);
     form.parentNode.insertBefore(imgStorage.h1Cloud3, form.parentNode.firstChild);
@@ -261,6 +309,43 @@ window.onload = function () {
     form.parentNode.insertBefore(imgStorage.h1Cloud8, form.parentNode.firstChild);
     form.parentNode.insertBefore(imgStorage.h1Cloud9, form.parentNode.firstChild);
     form.parentNode.insertBefore(imgStorage.h1Cloud10, form.parentNode.firstChild);
-    form.parentNode.appendChild(imgStorage.bush)
+    form.parentNode.appendChild(imgStorage.bush1)
+    form.parentNode.appendChild(imgStorage.bush2)
+    form.parentNode.appendChild(divStorage.leafEffectScreen);
     createCustomSelect();
+
+    let animatingElements = [];
+    
+    form.parentNode.querySelector("h1").classList.add("animated", "hidden");
+    divStorage.selectedActivity.classList.add("animated");
+    divStorage.selectedActivity.style.opacity = 0;
+    for(const section of [ divStorage.activitySelectionSection, divStorage.selectedActivity, divStorage.foodAllergiesSection, divStorage.additionSection ]){
+        for(const child of section.children){
+            child.classList.add("animated", "hidden");
+            animatingElements.push(child);
+        }
+    };
+    divStorage.submitBtnCover.classList.add("animated", "hidden");
+    animatingElements.push(divStorage.submitBtnCover);
+
+    document.querySelector("#camp-activities-inquiry").style.display = "block";
+
+    (async () => {
+        await new Promise(resolve => setTimeout(() => {
+            form.parentNode.querySelector("h1").classList.remove("hidden");
+            resolve();
+        }, 500))
+        for (const [i, element] of animatingElements.entries()) {
+            await new Promise(resolve => setTimeout(() => {
+                if(element.classList.contains("selected-activity-img")){
+                    divStorage.selectedActivity.style.opacity = 1;
+                    element.classList.remove("animated")
+                    element.style.transform = "translateY(0) rotateY(720deg)";
+                }
+                element.classList.remove("hidden");
+                element.classList.add("appeared");
+                resolve();
+            }, i === 0 ? 500 : 100));
+        }
+    })();
 }

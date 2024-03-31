@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Truculenta:opsz,wght@12..72,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Foundation:wght@400..700&display=swap');
 
+html{ overflow-x: hidden; }
+
 body{
     position: relative;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -9,12 +11,14 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
-    overflow-x: hidden;
     min-height: 100vh;
     margin: 0;
 }
 
-#camp-activities-inquiry{ text-align: center; }
+#camp-activities-inquiry{
+    text-align: center;
+    display: none;
+}
 #camp-activities-inquiry h1{
     font-family: "Carter One", system-ui;
     font-weight: 400;
@@ -78,7 +82,6 @@ textarea{
     cursor: pointer;
     font-size: 1.5em;
     color: white;
-    grid-column: 1 / span 2;
 }
 
 #camp-activities-inquiry form label[for="activity-select"]{
@@ -124,7 +127,6 @@ textarea{
     padding: 1rem;
     padding-right: 5rem;
     background-color: #eeeeee22;
-    z-index: 10;
     overflow: hidden;
 }
 
@@ -140,6 +142,7 @@ textarea{
     cursor: pointer;
     user-select: none;
     font-size: 1.25em;
+    transition: background-color, 0.3s ease-in-out;
 }
 
 .select-items {
@@ -185,31 +188,98 @@ textarea{
     animation: cloud-moving linear infinite alternate;
 }
 
-.bush-btn-bg{
+.bush{
+    z-index: 1;
     position: absolute;
     bottom: 0;
-    left: 0;
     width: 30rem;
-    z-index: -1;
+    cursor: pointer;
     filter: hue-rotate(110deg) brightness(0.7);
+    transition: width 1s linear(0 0%, 0.22 2.1%, 0.86 6.5%, 1.11 8.6%, 1.3 10.7%, 1.35 11.8%, 1.37 12.9%, 1.37 13.7%, 1.36 14.5%, 1.32 16.2%, 1.03 21.8%, 0.94 24%, 0.89 25.9%, 0.88 26.85%, 0.87 27.8%, 0.87 29.25%, 0.88 30.7%, 0.91 32.4%, 0.98 36.4%, 1.01 38.3%, 1.04 40.5%, 1.05 42.7%, 1.05 44.1%, 1.04 45.7%, 1 53.3%, 0.99 55.4%, 0.98 57.5%, 0.99 60.7%, 1 68.1%, 1.01 72.2%, 1 86.7%, 1 100%)
 }
 
 .activity-selection-section{
+    z-index: 10;
     justify-content: flex-start !important;
 }
 
+.selected-activity{
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+    background: radial-gradient(ellipse, #19005788, #56007e44, #5d003822, transparent 70%);
+}
+
 .selected-activity-img{
-    height: 80%;
+    height: 90%;
     width: auto;
     border-radius: 5rem;
+    max-height: 750px;
+    max-width: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s linear;
+}
+
+.animated{ transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; }
+.hidden{ opacity: 0; transform: translateY(-2rem); }
+.appeared{ opacity: 1; transform: translateY(0); }
+
+.leaf{
+    position: absolute;
+    z-index: 2;
+    width: 2rem;
+    filter: hue-rotate(105deg) brightness(0.55) contrast(2) saturate(0.75);
+    transition: transform 0.5s ease-out;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    opacity: 0;
+    transform: translate(0) rotate(0) scale(0);
+}
+
+.effect-area{
+    position: absolute;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    pointer-events: none;
 }
 
 @keyframes cloud-moving{
-    0%{
+    from{
         transform: translateX(0);
     }
-    100%{
+    to{
         transform: translateX(200vw);
+    }
+}
+
+@keyframes leaf-away-1{
+    0%{
+        transform: translate(0) rotate(0) scale(0);
+        opacity: 0;
+    }
+    65%{
+        transform: translate(50%, -50%) rotate(30deg) scale(1);
+        opacity: 1;
+    }
+    100%{
+        transform: translate(50%, -50%) rotate(30deg) scale(0.8);
+        opacity: 0;
+    }
+}
+
+@keyframes leaf-away-2{
+    0%{
+        transform: translate(0) rotate(0) scale(0);
+        opacity: 0;
+    }
+    65%{
+        transform: translate(-50%, -50%) rotate(-15deg) scale(-0.8, 0.8);
+        opacity: 1;
+    }
+    100%{
+        transform: translate(-50%, -50%) rotate(-15deg) scale(-0.6, 0.6);
+        opacity: 0;
     }
 }
 
