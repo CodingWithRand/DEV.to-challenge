@@ -347,5 +347,7 @@ window.onload = function () {
                 resolve();
             }, i === 0 ? 500 : 100));
         }
+        setTimeout(() => { for(const textarea of document.querySelectorAll("textarea")) textarea.classList.remove("animated") }, 500);
     })();
+
 }
